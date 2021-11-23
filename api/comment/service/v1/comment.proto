@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package comment.service.v1;
+
+option go_package = "yuumi-movie/api/comment/service/v1;v1";
+
+service Comment {
+	rpc CreateComment (CreateCommentReq) returns (CreateCommentReply);
+	rpc UpdateComment (UpdateCommentReq) returns (UpdateCommentReply);
+	rpc DeleteComment (DeleteCommentReq) returns (DeleteCommentReply);
+	rpc GetComment (GetCommentReq) returns (GetCommentReply);
+	rpc ListComment (ListCommentReq) returns (ListCommentReply);
+}
+
+message CreateCommentReq {
+
+}
+message CreateCommentReply {}
+
+message UpdateCommentReq {}
+message UpdateCommentReply {}
+
+message DeleteCommentReq {}
+message DeleteCommentReply {}
+
+message GetCommentReq {}
+message GetCommentReply {}
+
+message ListCommentReq {}
+message ListCommentReply {}
