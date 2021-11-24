@@ -22,9 +22,9 @@
 
 ## TODOs
 - [ ] 电影列表 
-- [ ] 电影详情 @自由
+- [ ] 电影详情 @明子
 - [ ] 搜索电影 
-- [ ] 用户登录 
+- [ ] 用户登录 @自由
 
 ## Component 
 - 中间件 [Kratos](https://github.com/go-kratos/kratos)
