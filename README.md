@@ -25,6 +25,7 @@
 - [ ] 电影详情 @明子
 - [ ] 搜索电影 
 - [ ] 用户登录 @自由
+- [ ] 基础库 @自由
 
 ## Component 
 - 中间件 [Kratos](https://github.com/go-kratos/kratos)
