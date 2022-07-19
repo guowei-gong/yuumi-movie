@@ -8,7 +8,7 @@
 
 
 # [WIP]Yuumi-movie
-📺 Yuumi(悠米) 是一个在线视频项目，服务端基于 Go 微服务框架 Kratos 实现。 
+📺 Yuumi(悠米) 是一个在线视频项目，服务端基于 Go 微服务框架 Kratos 实现。
 
 > 名称起源：Yuumi 是英雄联盟中，战士英雄最喜欢的辅助英雄。
 
@@ -21,22 +21,21 @@
 我们希望提供一个 Kratos 完整的示例项目。让每一个 Go 微服务初学者，对于微服务的开发都有一个完整的体验。你不仅能学到微服务方面的技术，还能在 Yuumi 追剧。
 
 ## TODOs
-- [ ] 电影列表 
-- [ ] 电影详情 @明子
-- [ ] 搜索电影 
-- [ ] 用户登录 @自由
-- [ ] 基础库 @自由
+- [ ] 电影列表
+- [ ] 电影详情
+- [ ] 搜索电影
+- [ ] 用户登录
 
-## Component 
+## Component
 - 中间件 [Kratos](https://github.com/go-kratos/kratos)
-- 数据库 [ent](https://github.com/ent/ent) 
+- 数据库 [ent](https://github.com/ent/ent)
 - 认证鉴权 [JWT](https://jwt.io/)
 - 框架路由 [gin](https://github.com/gin-gonic/gin)
 - 文档生成 [Swagger](https://swagger.io/)
 - 任务调度 [cron](https://github.com/robfig/cron)
 - 传输协议 [gRPC](https://github.com/grpc/grpc-go)
 - 依赖注入 [wire](https://github.com/google/wire)
-- 日志 [zap](https://github.com/uber-go/zap) 
+- 日志 [zap](https://github.com/uber-go/zap)
 - 包管理工具 [Go Modules](https://github.com/golang/go/wiki/Modules)
 - 测试框架 待定
 - CI/CD 待定

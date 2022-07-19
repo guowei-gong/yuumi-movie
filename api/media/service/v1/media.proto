@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package api.media.v1;
+
+option go_package = "yuumi-movie/api/media/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.media.v1";
+
+service Media {
+	rpc CreateMedia (CreateMediaRequest) returns (CreateMediaReply);
+	rpc UpdateMedia (UpdateMediaRequest) returns (UpdateMediaReply);
+	rpc DeleteMedia (DeleteMediaRequest) returns (DeleteMediaReply);
+	rpc GetMedia (GetMediaRequest) returns (GetMediaReply);
+	rpc ListMedia (ListMediaRequest) returns (ListMediaReply);
+}
+
+message CreateMediaRequest {}
+message CreateMediaReply {}
+
+message UpdateMediaRequest {}
+message UpdateMediaReply {}
+
+message DeleteMediaRequest {}
+message DeleteMediaReply {}
+
+message GetMediaRequest {}
+message GetMediaReply {}
+
+message ListMediaRequest {}
+message ListMediaReply {}
