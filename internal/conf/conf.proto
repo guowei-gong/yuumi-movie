@@ -8,6 +8,7 @@ import "google/protobuf/duration.proto";
 message Bootstrap {
   Server server = 1;
   Data data = 2;
+  JWT jwt = 3;
 }
 
 message Server {
@@ -27,8 +28,7 @@ message Server {
 
 message Data {
   message Database {
-    string driver = 1;
-    string source = 2;
+    string dsn = 1;
   }
   message Redis {
     string network = 1;
@@ -38,4 +38,8 @@ message Data {
   }
   Database database = 1;
   Redis redis = 2;
+}
+
+message JWT {
+  string secret = 1;
 }
