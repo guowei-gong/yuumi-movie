@@ -51,6 +51,7 @@ func (r *userRepo) GetUserByEmail(ctx context.Context, email string) (*biz.User,
 		return nil, result.Error
 	}
 	return &biz.User{
+		Name:     u.Username,
 		Email:    u.Email,
 		Password: u.PasswordHash,
 	}, nil

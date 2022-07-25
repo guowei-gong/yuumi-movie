@@ -3,7 +3,10 @@ package biz
 import (
 	"context"
 	"github.com/go-kratos/kratos/v2/errors"
+	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
+	"net/mail"
+	v1 "yuumi-movie/api/user/interface/v1"
 	"yuumi-movie/internal/conf"
 	"yuumi-movie/internal/pkg/middleware/auth"
 	passwords "yuumi-movie/internal/pkg/password"
@@ -48,7 +51,36 @@ func NewUserUsecase(userRepo UserRepo, jwtc *conf.JWT) *UserUsecase {
 	}
 }
 
+func (uc *UserUsecase) Login(ctx context.Context, email, password string) (*UserLogin, error) {
+	_, err := mail.ParseAddress(email)
+	if err != nil {
+		return nil, v1.ErrorEmailNotVerify("请输入有效的电子邮件地址")
+	}
+	u, err := uc.userRepo.GetUserByEmail(ctx, email)
+	if err != nil {
+		return nil, v1.ErrorEmailNotAvailable("密码错误或用户不存在")
+	}
+	if !uc.verifyPassword(u.Password, password) {
+		return nil, errors.Unauthorized("user", "密码错误或用户不存在")
+	}
+	return &UserLogin{
+		Name:  u.Name,
+		Email: u.Email,
+		Token: uc.generateToken(u.ID),
+	}, nil
+}
+
 func (uc *UserUsecase) Register(ctx context.Context, email, password string) (*UserLogin, error) {
+	_, err := mail.ParseAddress(email)
+	if err != nil {
+		return nil, v1.ErrorEmailNotVerify("请输入有效的电子邮件地址")
+	}
+	if err := passwords.ParsePassword(password, 8, 32); err != nil {
+		return nil, v1.ErrorPasswordNotVerify("%s", err)
+	}
+	if uc.UserExist(ctx, email) {
+		return nil, v1.ErrorEmailNotAvailable("电子邮件地址已被注册")
+	}
 	u := &User{
 		Email: email,
 	}
@@ -86,6 +118,13 @@ func (uc *UserUsecase) generateToken(userID uint) string {
 
 func (uc *UserUsecase) hashPassword(password string) (string, error) {
 	return passwords.HashPassword(password)
+}
+
+func (uc *UserUsecase) verifyPassword(hashed, input string) bool {
+	if err := bcrypt.CompareHashAndPassword([]byte(hashed), []byte(input)); err != nil {
+		return false
+	}
+	return true
 }
 
 func (u *User) defaultName() string {
